@@ -28,7 +28,7 @@ compileTestKotlin {
 
 jar {
     manifest {
-        attributes "Main-Class": "com.adamratzman.jpm.JPMKt"
+        attributes "Main-Class": "com.adamratzman.education.fafsa.FafsaKt"
     }
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
