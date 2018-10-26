@@ -31,6 +31,6 @@ fun getSchools(lookupTemp: List<String>): List<School> {
     val parser = CSVParser("1819FedSchoolCodeList.csv".getResourceReader(), CSVFormat.EXCEL.withHeader())
     return parser.records.map { record ->
         val school = record.get("SchoolName").toLowerCase().replace("-", "").replace(" ", "")
-        Triple(record.get("SchoolName").toLowerCase().split(" ").joinToString(" ") { it.capitalize() }, record.get("SchoolCode"), LevenshteinDistance.getDefaultInstance().apply(lookup.toLowerCase(), school.toLowerCase()))
+        Triple(record.get("SchoolName").toLowerCase().split(" ").joinToString(" ") { it.capitalize() } + " " + record.get("City"), record.get("SchoolCode"), LevenshteinDistance.getDefaultInstance().apply(lookup.toLowerCase(), school.toLowerCase()))
     }.sortedBy { it.third }.map { School(it.first, it.second) }.take(5)
 }
